@@ -12,7 +12,7 @@ public class InventorySystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InventorySystemApplication.class, args);
-		System.out.println("Application is running");
+		System.out.println("Applications is running");
 	}
 
 }
