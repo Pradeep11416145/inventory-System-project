@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductModel {
+	
+	private String inventoryDate;
 
     private String productName;
 

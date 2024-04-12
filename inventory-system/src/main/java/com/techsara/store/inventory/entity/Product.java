@@ -12,6 +12,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id;
+    
+    @Column(name="inventory_date")
+    private String inventoryDate;
 
     @Column(name="product_name")
     private String productName;
