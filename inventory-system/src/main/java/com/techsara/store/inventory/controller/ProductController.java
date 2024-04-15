@@ -25,10 +25,10 @@ public class ProductController {
         return message;
     }
 
-    @PutMapping("/update/{id}")//=== this is work for updating the value
-    public String updateProduct(@PathVariable int id, @RequestBody ProductModel productModel){
-        String updatedMassage =  productService.updateProduct(productModel);
-        return updatedMassage;
+    @PutMapping("/update")  //used for updating
+    public String updateSale( @RequestBody  ProductModel productModel) {
+        String message = productService.updateProduct(productModel);
+        return message;
     }
 
     @GetMapping("/productDetails")// this is work for fetch the data

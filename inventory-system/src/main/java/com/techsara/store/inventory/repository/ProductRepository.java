@@ -13,6 +13,8 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository  extends JpaRepository<Product ,Integer> {
+
+    Optional<Product> findById(Integer id);
     List<Product> findByProductName(String productName);// here is using productTable name from entity
 
     List<Product> findByProductBrandAndProductSize(String productName, String productSize);

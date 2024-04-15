@@ -7,7 +7,10 @@ import com.techsara.store.inventory.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService {
 
@@ -15,10 +18,55 @@ public class ProductService {
     ProductRepository productRepository;
 
     public String addProduct(ProductModel productModel){
-        ObjectMapper objectMapper = new ObjectMapper();
-        Product product = objectMapper.convertValue(productModel, Product.class);
+        //==== this  code is work for all object save one time //
+
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Product product = objectMapper.convertValue(productModel, Product.class);
+
+        Product product = new Product();
+        product.setProductName(productModel.getProductName());
+        product.setEntryDate(new Date());//====> this is for set date
+        product.setProductCode(productModel.getProductCode());
+        product.setProductBrand(productModel.getProductBrand());
+        product.setProductPrice(productModel.getProductPrice());
+        product.setInventoryDate(productModel.getInventoryDate());
+        product.setProductQuantity(productModel.getProductQuantity());
+        product.setProductSize(productModel.getProductSize());
+        product.setProductType(productModel.getProductType());
         productRepository.save(product);
         return   "Successfully added product";
+    }
+
+
+    public String updateProduct(ProductModel productModel) {
+
+        Optional<Product> productFromDb = productRepository.findById(productModel.getUpdateId());
+        Product product = productFromDb.get();
+        if(productModel.getProductName()!=null) {//======if model get value then set it
+            product.setProductName(productModel.getProductName());
+        }
+        if(product.getProductPrice()!=0){
+            product.setProductPrice(productModel.getProductPrice());
+        }
+        if (product.getInventoryDate()!=null){
+            product.setInventoryDate(productModel.getInventoryDate());
+        }
+        if (product.getProductCode()!=null){
+            product.setProductCode(productModel.getProductCode());
+        }
+        if (product.getProductType()!=null){
+            product.setProductType(productModel.getProductType());
+        }
+        if (product.getProductBrand()!=null){
+            product.setProductBrand(productModel.getProductBrand());
+        }
+        if (product.getProductSize()!=null){
+            product.setProductSize(productModel.getProductSize());
+        }
+        productRepository.save(product);
+
+        return "updated";
+
     }
 
     public List<Product> findByProductName(String productName){
@@ -39,13 +87,11 @@ public class ProductService {
         return null;
     }
 
-   public String updateProduct(ProductModel productModel){
-      return "success";
-    }
     public String deleteProduct( String code){
         productRepository.deleteByProductCode(code);
        return "successfully product deleted";
     }
+
 
 
 }

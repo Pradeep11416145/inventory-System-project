@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductModel {
+
+    private int updateId;//=======> this is id use for update  only
 	
 	private String inventoryDate;
 

@@ -4,6 +4,9 @@ package com.techsara.store.inventory.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
+
 @Entity
 @Table(name="product")
 @Getter
@@ -36,4 +39,8 @@ public class Product {
 
     @Column(name="product_Quantity")
     private int productQuantity;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date EntryDate;
+
 }
