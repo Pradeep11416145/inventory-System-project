@@ -70,7 +70,8 @@ public class ProductService {
     }
 
     public List<Product> findByProductName(String productName){
-       return productRepository.findByProductName(productName);
+        // this Like code is work for space count
+       return productRepository.findByProductNameLike("%" + productName + "%");
 
     }
 
@@ -87,11 +88,27 @@ public class ProductService {
         return null;
     }
 
+    // this code work fetch data from id base ==//
+
+    public Optional<Product> productById(Integer id) {
+        Optional<Product> salesFromDb = productRepository.findById(id);
+        return salesFromDb;
+    }
+
     public String deleteProduct( String code){
         productRepository.deleteByProductCode(code);
        return "successfully product deleted";
     }
 
 
+    public List<Product> findByInventoryDate(String inventoryDate) {
+       return productRepository.findByInventoryDate(inventoryDate) ;
+    }
 
+    // this code is work for delete in id base====//
+
+    public String deleteInventory(Integer id) {
+      productRepository.deleteById(id);
+      return "delete success";
+    }
 }

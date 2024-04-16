@@ -22,6 +22,14 @@ public interface ProductRepository  extends JpaRepository<Product ,Integer> {
 // this is using native query to find the data from database 
     @Query(value = "select * from bestbuy.product where product_brand =? and product_Size = ? and product_Type = ?", nativeQuery = true)
     List<Product> findProductByQuery(String productBrand, String productSize, String productType);
+
+    List<Product> findByInventoryDate(String inventoryDate);
+//=== this code work for space count==//
+    List<Product> findByProductNameLike(String productName);
     @Transactional
     public void deleteByProductCode( String code );
+
+
+
+
 }
