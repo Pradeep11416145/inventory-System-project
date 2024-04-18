@@ -45,22 +45,22 @@ public class ProductService {
         if(productModel.getProductName()!=null) {//======if model get value then set it
             product.setProductName(productModel.getProductName());
         }
-        if(product.getProductPrice()!=0){
+        if(productModel.getProductPrice()!=0){
             product.setProductPrice(productModel.getProductPrice());
         }
-        if (product.getInventoryDate()!=null){
+        if (productModel.getInventoryDate()!=null){
             product.setInventoryDate(productModel.getInventoryDate());
         }
-        if (product.getProductCode()!=null){
+        if (productModel.getProductCode()!=null){
             product.setProductCode(productModel.getProductCode());
         }
-        if (product.getProductType()!=null){
+        if (productModel.getProductType()!=null){
             product.setProductType(productModel.getProductType());
         }
-        if (product.getProductBrand()!=null){
+        if (productModel.getProductBrand()!=null){
             product.setProductBrand(productModel.getProductBrand());
         }
-        if (product.getProductSize()!=null){
+        if (productModel.getProductSize()!=null){
             product.setProductSize(productModel.getProductSize());
         }
         productRepository.save(product);
