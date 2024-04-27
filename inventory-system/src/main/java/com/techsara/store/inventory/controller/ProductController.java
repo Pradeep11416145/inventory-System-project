@@ -32,7 +32,7 @@ public class ProductController {
         return message;
     }
 
-    @GetMapping("/productDetails")// this is work for fetch the data
+    @GetMapping("/productDetailsByName")// this is work for fetch the data
     public List<Product> productDetails(@RequestParam String productName) {
         List<Product> productList = productService.findByProductName(productName);
         return productList;
@@ -50,7 +50,7 @@ public class ProductController {
         return productList;
     }
 //===== this  code is work fetch data from id base ====//
-    @GetMapping("/getCall")// this is work for fetch the data
+    @GetMapping("/getById")// this is work for fetch the data
     public Optional<Product> productDetails(@RequestParam Integer id) {
         Optional<Product> productList = productService.productById(id);
         return productList;

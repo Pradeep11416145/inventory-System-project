@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.techsara.store.inventory.repository")
+//@EnableJpaRepositories(basePackages = "com.techsara.store.inventory.repository")
 public class InventorySystemApplication {
 
 	public static void main(String[] args) {

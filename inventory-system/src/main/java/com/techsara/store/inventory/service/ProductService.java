@@ -48,19 +48,19 @@ public class ProductService {
         if(productModel.getProductPrice()!=0){
             product.setProductPrice(productModel.getProductPrice());
         }
-        if (productModel.getInventoryDate()!=null){
+        if( (productModel.getInventoryDate()!=null)&&(productModel.getInventoryDate()!="")){
             product.setInventoryDate(productModel.getInventoryDate());
         }
-        if (productModel.getProductCode()!=null){
+        if( (productModel.getProductCode()!=null)&&(productModel.getProductCode()!="")){
             product.setProductCode(productModel.getProductCode());
         }
-        if (productModel.getProductType()!=null){
+        if ((productModel.getProductType()!=null)&&(productModel.getProductType()!="")){
             product.setProductType(productModel.getProductType());
         }
-        if (productModel.getProductBrand()!=null){
+        if ((productModel.getProductBrand()!=null)&&(productModel.getProductBrand()!="")){
             product.setProductBrand(productModel.getProductBrand());
         }
-        if (productModel.getProductSize()!=null){
+        if ((productModel.getProductSize()!=null)&&(productModel.getProductSize()!="")){
             product.setProductSize(productModel.getProductSize());
         }
         productRepository.save(product);
