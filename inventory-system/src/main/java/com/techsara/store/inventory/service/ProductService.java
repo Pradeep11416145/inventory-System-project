@@ -39,35 +39,46 @@ public class ProductService {
 
 
     public String updateProduct(ProductModel productModel) {
-
         Optional<Product> productFromDb = productRepository.findById(productModel.getUpdateId());
-        Product product = productFromDb.get();
-        if(productModel.getProductName()!=null) {//======if model get value then set it
-            product.setProductName(productModel.getProductName());
-        }
-        if(productModel.getProductPrice()!=0){
-            product.setProductPrice(productModel.getProductPrice());
-        }
-        if( (productModel.getInventoryDate()!=null)&&(productModel.getInventoryDate()!="")){
-            product.setInventoryDate(productModel.getInventoryDate());
-        }
-        if( (productModel.getProductCode()!=null)&&(productModel.getProductCode()!="")){
-            product.setProductCode(productModel.getProductCode());
-        }
-        if ((productModel.getProductType()!=null)&&(productModel.getProductType()!="")){
-            product.setProductType(productModel.getProductType());
-        }
-        if ((productModel.getProductBrand()!=null)&&(productModel.getProductBrand()!="")){
-            product.setProductBrand(productModel.getProductBrand());
-        }
-        if ((productModel.getProductSize()!=null)&&(productModel.getProductSize()!="")){
-            product.setProductSize(productModel.getProductSize());
-        }
-        productRepository.save(product);
 
-        return "updated";
+        if (productFromDb.isPresent()) {
+            Product product = productFromDb.get();
 
+            if (productModel.getProductName() != null) {
+                product.setProductName(productModel.getProductName());
+            }
+
+            if (productModel.getProductPrice() != 0) {
+                product.setProductPrice(productModel.getProductPrice());
+            }
+
+            if (productModel.getInventoryDate() != null && !productModel.getInventoryDate().equals("")) {
+                product.setInventoryDate(productModel.getInventoryDate());
+            }
+
+            if (productModel.getProductCode() != null && !productModel.getProductCode().equals("")) {
+                product.setProductCode(productModel.getProductCode());
+            }
+
+            if (productModel.getProductType() != null && !productModel.getProductType().equals("")) {
+                product.setProductType(productModel.getProductType());
+            }
+
+            if (productModel.getProductBrand() != null && !productModel.getProductBrand().equals("")) {
+                product.setProductBrand(productModel.getProductBrand());
+            }
+
+            if (productModel.getProductSize() != null && !productModel.getProductSize().equals("")) {
+                product.setProductSize(productModel.getProductSize());
+            }
+
+            productRepository.save(product);
+            return "updated";
+        } else {
+            return "id  not found"; // Or handle the error in another appropriate way
+        }
     }
+
 
     public List<Product> findByProductName(String productName){
         // this Like code is work for space count
@@ -92,6 +103,7 @@ public class ProductService {
 
     public Optional<Product> productById(Integer id) {
         Optional<Product> salesFromDb = productRepository.findById(id);
+        
         return salesFromDb;
     }
 
@@ -106,9 +118,13 @@ public class ProductService {
     }
 
     // this code is work for delete in id base====//
-
     public String deleteInventory(Integer id) {
-      productRepository.deleteById(id);
-      return "delete success";
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            productRepository.deleteById(id);
+            return "Delete success";
+        } else {
+            return "No record found with ID: " + id;
+        }
     }
 }
